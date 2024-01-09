@@ -9,7 +9,7 @@ const openai = new OpenAI({
 
 
 const options = {
-	WebSocket: WebSocket, // custom WebSocket constructor
+	WebSocket: WebSocket, 
 	connectionTimeout: 15000,
 	maxRetries: 100,
 };
@@ -17,7 +17,7 @@ const options = {
 const rws = new ReconnectingWebSocket('wss://news.treeofalpha.com/ws', [], options);
 
 function escapeRegex(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); 
 }
 
 const keywords = [
