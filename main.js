@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 const axios = require('axios');
 
 const openai = new OpenAI({
-	apiKey: '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'
+	apiKey: 'xxxxxx'
 });
 
 
@@ -59,10 +59,9 @@ rws.addEventListener('message', async (event) => {
         console.log("Special Keyword found, forwarding immediately:", content);
         await forwardImmediately(content); 
     } else if (pattern.test(content)) {
-        // Content contains regular keyword, pass it to the main function
+        //pass it to the main function
         await main(content); 
     } else {
-        // Content does not contain any special or regular keywords, disregard it
         console.log("Content does not contain relevant keywords, disregarding.");
     }
 });
@@ -77,12 +76,11 @@ rws.addEventListener('error', (error) => {
 
 
 async function forwardImmediately(content) {
-    const webhookUrl = 'https://discordapp.com/api/webhooks/1193993745083941015/tSc3vJYgYcCMWnXNgxUhNiLtlMVtjpt-H9zDLyMtPBd5dLW1TtcgMhA8H-TYNhoVxUsg';
+    const webhookUrl = 'XXX';
     const unixTimestamp = Math.floor(Date.now());
     const messageWithTimestamp = `Timestamp: ${unixTimestamp}\nContent: ${content}`;
 
     try {
-        console.log('Content inside the forward function', messageWithTimestamp);
         await axios.post(webhookUrl, { content: messageWithTimestamp });
         console.log('Message sent to Discord');
     } catch (error) {
@@ -94,7 +92,7 @@ async function main(content) {
 	const completion = await openai.chat.completions.create({
 		messages: [{
 				"role": "system",
-				"content": "You are a helpful assistant. Evaluate the impact of each news headline on an individual company's cryptocurrency price and respond with a numerical score from 7 to 10. Ignore headlines with negligible to moderate impact (scores 1 to 6). Use this scale for scoring: - 7: High impact, such as major product launches or significant financial milestones. - 8: Very high impact, including large-scale mergers or major corporate restructuring. - 9: Extremely high impact, indicating potential for major market shifts. - 10: Transformative impact, like groundbreaking industry developments or major geopolitical events. Respond only with the numerical score based on this scale."
+				"content": "."
 			},
 			{
 				"role": "user",
@@ -122,7 +120,7 @@ async function main(content) {
     
         if (score >= 7) {
             console.log("Score is 7 or above:", score);
-            webhookUrl = 'https://discordapp.com/api/webhooks/1193993745083941015/tSc3vJYgYcCMWnXNgxUhNiLtlMVtjpt-H9zDLyMtPBd5dLW1TtcgMhA8H-TYNhoVxUsg';
+            webhookUrl = 'XXXX';
         }
     
         if (webhookUrl) {
